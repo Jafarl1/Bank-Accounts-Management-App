@@ -1,5 +1,3 @@
-import "./styles/styles.css";
-
 function BankAccount(ownerName, initialBalance) {
   this.ownerName = ownerName;
   this.balance = initialBalance;
@@ -41,18 +39,20 @@ const BankAccountPrototype = {
 
 BankAccount.prototype = BankAccountPrototype;
 
-const myBankAccount = new BankAccount("Zohrab", 5000);
+// const myBankAccount = new BankAccount("Zohrab", 5000);
 
-console.log(myBankAccount);
-console.log(myBankAccount.blockingBalance(true));
-console.log(myBankAccount.blockingBalance(false));
-console.log(myBankAccount.withdraw(2000));
-console.log(myBankAccount.getBalance());
+// console.log(myBankAccount);
+// console.log(myBankAccount.blockingBalance(true));
+// console.log(myBankAccount.blockingBalance(false));
+// console.log(myBankAccount.withdraw(2000));
+// console.log(myBankAccount.getBalance());
 
-const usersBankAccount = new BankAccount("newUser", 8000);
+// const usersBankAccount = new BankAccount("newUser", 8000);
 
-console.log(usersBankAccount);
-console.log(usersBankAccount.withdraw(3000));
-console.log(usersBankAccount.deposit(4500));
-console.log(usersBankAccount.getBalance());
-console.log(usersBankAccount.withdraw(12000));
+// console.log(usersBankAccount);
+// console.log(usersBankAccount.withdraw(3000));
+// console.log(usersBankAccount.deposit(4500));
+// console.log(usersBankAccount.getBalance());
+// console.log(usersBankAccount.withdraw(12000));
+
+module.exports = { BankAccount };
