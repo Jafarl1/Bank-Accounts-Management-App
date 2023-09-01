@@ -105,4 +105,18 @@ describe("BankAccount function:", () => {
       }).toThrow("Insufficient funds on the balance.");
     });
   });
+
+  describe("getBalance function:", () => {
+    account.balance = 1000;
+
+    test("should be defined", () => {
+      expect(account.getBalance()).toBeDefined();
+    });
+
+    test("should return the correct balance message", () => {
+      const result = account.getBalance();
+
+      expect(result).toBe("Your current balance is 1000$.");
+    });
+  });
 });
