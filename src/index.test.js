@@ -34,4 +34,35 @@ describe("BankAccount function:", () => {
       }).toThrow("Parameter is invalid.");
     });
   });
+
+  describe("deposit function:", () => {
+    beforeEach(() => {
+      account.balance = 1000;
+    });
+
+    test("should be defined", () => {
+      expect(account.deposit(1000)).toBeDefined();
+    });
+
+    test("should increase the balance if amount is valid", () => {
+      const result = account.deposit(1500);
+
+      expect(account.balance).toBe(2500);
+      expect(result).toBe(
+        "You have topped up your balance by 1500$, your current balance is 2500$."
+      );
+    });
+
+    test("should throw an error if parameter is invalid", () => {
+      expect(() => {
+        account.deposit(null);
+      }).toThrow("Parameter is invalid.");
+      expect(() => {
+        account.deposit();
+      }).toThrow("Parameter is invalid.");
+      expect(() => {
+        account.deposit("null");
+      }).toThrow("Parameter is invalid.");
+    });
+  });
 });

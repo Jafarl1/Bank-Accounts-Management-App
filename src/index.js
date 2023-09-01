@@ -15,8 +15,12 @@ const BankAccountPrototype = {
   },
 
   deposit(amount) {
-    this.balance += amount;
-    return `You have topped up your balance by ${amount}$, your current balance is ${this.balance}$.`;
+    if (typeof amount === "number") {
+      this.balance += amount;
+      return `You have topped up your balance by ${amount}$, your current balance is ${this.balance}$.`;
+    } else {
+      throw new Error("Parameter is invalid.");
+    }
   },
 
   withdraw(amount) {
@@ -24,6 +28,8 @@ const BankAccountPrototype = {
       throw new Error(
         "Your bank account is blocked, you can't withdraw funds."
       );
+    } else if (typeof amount !== "number") {
+      throw new Error("Parameter is invalid.");
     } else if (this.balance >= amount) {
       this.balance -= amount;
       return `You cashed out ${amount}$, your current balance is ${this.balance}$.`;
