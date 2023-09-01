@@ -65,4 +65,44 @@ describe("BankAccount function:", () => {
       }).toThrow("Parameter is invalid.");
     });
   });
+
+  describe("withdraw function:", () => {
+    beforeEach(() => {
+      account.locked = false;
+      account.balance = 1000;
+    });
+
+    test("should throw an error if account is blocked", () => {
+      account.locked = true;
+
+      expect(() => {
+        account.withdraw(500);
+      }).toThrow("Your bank account is blocked, you can't withdraw funds.");
+    });
+
+    test("should decrease amount from the balance if amount is valid", () => {
+      const result = account.withdraw(200);
+
+      expect(account.balance).toBe(800);
+      expect(result).toBe("You cashed out 200$, your current balance is 800$.");
+    });
+
+    test("should throw an error if parameter is invalid", () => {
+      expect(() => {
+        account.withdraw(null);
+      }).toThrow("Parameter is invalid.");
+      expect(() => {
+        account.withdraw();
+      }).toThrow("Parameter is invalid.");
+      expect(() => {
+        account.withdraw("null");
+      }).toThrow("Parameter is invalid.");
+    });
+
+    test("should throw an error if there are not enough funds on the balance", () => {
+      expect(() => {
+        account.withdraw(2000);
+      }).toThrow("Insufficient funds on the balance.");
+    });
+  });
 });
